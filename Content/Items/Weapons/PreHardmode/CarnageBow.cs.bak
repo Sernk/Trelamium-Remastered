@@ -1,0 +1,46 @@
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace TrelamiumRemastered.Content.Items.Weapons.PreHardmode
+{
+    public class CarnageBow : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Carnage Bow");
+            Tooltip.SetDefault("");
+        }
+        public override void SetDefaults()
+        {
+            item.damage = 20;
+            item.crit = 8;
+            item.rare = 1;
+            item.width = 26;
+            item.height = 54;
+            item.useAnimation = 20;
+            item.useTime = 20;
+            item.useStyle = 5;
+            item.knockBack = 2.5f;
+            item.shootSpeed = 12f;
+            item.ranged = true;
+            item.autoReuse = true;
+            item.noMelee = true;
+            item.value = Terraria.Item.buyPrice(0, 3, 50, 0);
+            item.UseSound = SoundID.Item5;
+            item.shoot = 10;
+            item.useAmmo = AmmoID.Arrow;
+        }
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ModContent.ItemType<DripplingStone>(), 6);
+            recipe.AddIngredient(ModContent.ItemType<DecayedTooth>(), 14);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+    }
+}

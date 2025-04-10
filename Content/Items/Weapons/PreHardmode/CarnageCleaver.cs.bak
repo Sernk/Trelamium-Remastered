@@ -1,0 +1,47 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace TrelamiumRemastered.Content.Items.Weapons.PreHardmode
+{
+    public class CarnageCleaver : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Carnage Cleaver");
+            Tooltip.SetDefault("");
+        }
+
+        public override void SetDefaults()
+        {
+            item.damage = 20;
+            item.crit = 4;
+            item.rare = 1;
+            item.width = 52;
+            item.height = 60;
+            item.useAnimation = 25;
+            item.useTime = 25;
+            item.useStyle = 1;
+            item.knockBack = 7.5f;
+            item.shootSpeed = 10f;
+            item.melee = true;
+            item.autoReuse = true;
+            item.useTurn = true;
+            item.value = Terraria.Item.buyPrice(0, 5, 50, 0);
+            item.UseSound = SoundID.Item1;
+        }
+
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ModContent.ItemType<DripplingStone>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<DecayedTooth>(), 14);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+    }
+}

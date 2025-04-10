@@ -1,0 +1,3 @@
+displayName = Trelamium Remastered
+author = Gs_Qs
+version = 0.9

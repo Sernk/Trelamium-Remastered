@@ -1,0 +1,47 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace TrelamiumRemastered.Content.Items.Weapons.PreHardmode
+{
+    public class ClusterBuster : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cluster Buster");
+            Tooltip.SetDefault("");
+        }
+
+        public override void SetDefaults()
+        {
+            Item.damage = 28;
+            Item.crit = 4;
+            Item.rare = 5;
+            Item.width = 48;
+            Item.height = 48;
+            Item.useAnimation = 25;
+            Item.useTime = 25;
+            Item.useStyle = 1;
+            Item.hammer = 80;
+            Item.axe = 20;
+            Item.knockBack = 5.5f;
+            Item.autoReuse = true;
+            Item.melee = true;
+            Item.useTurn = true;
+            Item.value = Terraria.Item.buyPrice(0, 2, 50, 0);
+            Item.UseSound = SoundID.Item1;
+        }
+
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe(); 
+            recipe.AddIngredient(ModContent.ItemType<AlluviumBar>(), 14);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+    }
+}

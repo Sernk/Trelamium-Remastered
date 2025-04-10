@@ -1,0 +1,50 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using TrelamiumRemastered.Content.Projectiles;
+
+namespace TrelamiumRemastered.Content.Items.Weapons.PreHardmode
+{
+    public class CopperKunai : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Copper Kunai");
+            Tooltip.SetDefault("");
+        }
+        public override void SetDefaults()
+        {
+            item.damage = 10;
+            item.crit = 4;
+            item.rare = 0;
+            item.width = 14;
+            item.height = 38;
+            item.useAnimation = 20;
+            item.useTime = 20;
+            item.useStyle = 1;
+            item.knockBack = 1.5f;
+            item.maxStack = 999;
+            item.shootSpeed = 8f;
+            item.thrown = true;
+            item.noMelee = true;
+            item.consumable = true;
+            item.autoReuse = true;
+            item.noUseGraphic = true;
+            item.value = Terraria.Item.buyPrice(0, 0, 0, 30);
+            item.shoot = ModContent.ProjectileType<CopperKunaiProjectile>();
+            item.UseSound = SoundID.Item1;
+        }
+
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe(30);
+            recipe.AddIngredient(ItemID.CopperBar, 3);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+    }
+}
