@@ -30,7 +30,7 @@ namespace TrelamiumRemastered.Content.Projectiles.Minions
             Projectile.aiStyle = 54;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 18000;
-            AIType = 317;
+            AIType = 759;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
         }

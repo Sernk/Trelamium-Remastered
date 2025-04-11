@@ -21,6 +21,8 @@ namespace TrelamiumRemastered.Content.Projectiles
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 1;
             AIType = ProjectileID.Bullet;
+            Projectile.friendly = false;
+            Projectile.hostile = true;
         }
         public override void OnKill(int timeLeft)
         {

@@ -10,6 +10,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
 using TrelamiumRemastered.Content.Items.ParadoxHive;
 using TrelamiumRemastered.Content.Items;
+using TrelamiumRemastered.Content.Projectiles.Boss.ParadoxHive;
 
 namespace TrelamiumRemastered.Content.NPCs.ParadoxHive
 {
@@ -52,7 +53,52 @@ namespace TrelamiumRemastered.Content.NPCs.ParadoxHive
         }
         public override void AI()
         {
+            NPC.ai[1]++;
+            NPC.ai[2]++;
+            NPC.ai[3]++;
             Player player = Main.player[NPC.target];
+            if (NPC.ai[1] >= 60) 
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    Vector2 direction = (Main.player[NPC.target].Center - NPC.Center).SafeNormalize(Vector2.UnitX);
+                    float speed = 12f;
+                    int type = ModContent.ProjectileType<ParadoxLaserProjectile>(); 
+                    int damage = 70;
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, direction * speed, type, damage, 1f, Main.myPlayer);
+                }
+
+                NPC.ai[1] = 0f;
+                NPC.netUpdate = true;
+            }
+            if (NPC.ai[2] >= 95)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    Vector2 direction = (Main.player[NPC.target].Center - NPC.Center).SafeNormalize(Vector2.UnitX);
+                    float speed = 12f;
+                    int type = ModContent.ProjectileType<ParadoxMissileProjectile>();
+                    int damage = 100;
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, direction * speed, type, damage, 1f, Main.myPlayer);
+                }
+
+                NPC.ai[2] = 0f;
+                NPC.netUpdate = true;
+            }
+            if (NPC.ai[3] >= 120)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    Vector2 direction = (Main.player[NPC.target].Center - NPC.Center).SafeNormalize(Vector2.UnitX);
+                    float speed = 12f;
+                    int type = ModContent.ProjectileType<ParadoxCloneHiveProjectile>();
+                    int damage = 100;
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, direction * speed, type, damage, 1f, Main.myPlayer);
+                }
+
+                NPC.ai[3] = 0f;
+                NPC.netUpdate = true;
+            }
             //bool pattern1 = false;
             //bool pattern2 = false;
             //bool pattern3 = false;
@@ -77,9 +123,6 @@ namespace TrelamiumRemastered.Content.NPCs.ParadoxHive
             if (vector5.Length() > 500f)
             {
                 NPC.ai[0] = 1f;
-                NPC.ai[1] = 0f;
-                NPC.ai[2] = 0f;
-                NPC.ai[3] = 0f;
             }
             if (vector5.Length() > 80f)
             {
@@ -109,52 +152,6 @@ namespace TrelamiumRemastered.Content.NPCs.ParadoxHive
                     NetMessage.SendData(MessageID.WorldData); 
             }
         }
-
-        //public override void NPCLoot()
-        //{
-        //    if (Main.rand.Next(10) == 0)
-        //    {
-        //        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ParadoxHiveTrophy"));
-        //    }
-        //    if (Main.rand.Next(6) == 0)
-        //    {
-        //        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ParadoxMask"));
-        //    }
-        //    if (Main.expertMode)
-        //    {
-        //        npc.DropBossBags();
-        //    }
-        //    else
-        //    {
-        //        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FragmentedCrystal"), Main.rand.Next(11, 15));
-        //        if (Main.rand.Next(5) == 0)
-        //        {
-        //            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Bloodrift"));
-        //        }
-        //        if (Main.rand.Next(5) == 0)
-        //        {
-        //            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EndlessHarvest"));
-        //        }
-        //        if (Main.rand.Next(5) == 0)
-        //        {
-        //            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Oblivion"));
-        //        }
-        //        if (Main.rand.Next(5) == 0)
-        //        {
-        //            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Equinoxx"));
-        //        }
-        //        if (Main.rand.Next(5) == 0)
-        //        {
-        //            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("TridentOfDesolation"));
-        //        }
-        //    }
-        //    if (!TrelamiumModWorld.downedParadoxHive)
-        //    {
-        //        TrelamiumModWorld.downedParadoxHive = true;
-        //        if (Main.netMode == NetmodeID.Server)
-        //            NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
-        //    }
-        //}
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

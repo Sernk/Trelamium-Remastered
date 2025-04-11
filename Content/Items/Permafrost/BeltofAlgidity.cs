@@ -34,6 +34,7 @@ namespace TrelamiumRemastered.Content.Items.Permafrost
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<TrelamiumModPlayer>().algidityBelt = true;
+            player.GetModPlayer<BeltofAlgidityPlayer>().DashAccessoryEquipped = true;
             player.dash = 1;
             if (player.whoAmI == Main.myPlayer)
             {

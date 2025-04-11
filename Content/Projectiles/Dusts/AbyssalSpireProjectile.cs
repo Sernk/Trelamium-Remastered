@@ -17,8 +17,8 @@ namespace TrelamiumRemastered.Content.Projectiles.Dusts
 
         public override void SetDefaults()
         {
-            Projectile.width = 16;
-            Projectile.height = 16;
+            Projectile.width = 32;
+            Projectile.height = 32;
             Projectile.friendly = true;
             Projectile.tileCollide = false;
             Projectile.penetrate = 20;

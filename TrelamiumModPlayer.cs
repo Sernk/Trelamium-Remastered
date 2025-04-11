@@ -18,6 +18,7 @@ namespace TrelamiumRemastered
 {
     public class TrelamiumModPlayer : ModPlayer
     {
+        public bool azolinthActive;
         private const int saveVersion = 0;
         public static bool hasProjectile;
         public bool algidityBelt = false;
@@ -60,6 +61,7 @@ namespace TrelamiumRemastered
 
         public override void ResetEffects()
         {
+            azolinthActive = false;
             antlionSwarmer = false;
             alluviumArmor = false;
             babySlime = false;

@@ -36,7 +36,7 @@ namespace TrelamiumRemastered.Content.Items.PholiotaGoliath
             Item.noMelee = true;
             Item.value = Terraria.Item.buyPrice(0, 0, 70, 0);
             Item.UseSound = SoundID.Item73;
-            Item.shoot = ModContent.ProjectileType<LyophylanceProjectile>();
+            Item.shoot = ModContent.ProjectileType<LyophylanceProjectileP>();
         }
     }
 }

@@ -16,6 +16,7 @@ namespace TrelamiumRemastered.Content.Items.Pyron
         {
             // DisplayName.SetDefault("Trident of Hades");
             // Tooltip.SetDefault("");
+            Item.staff[Item.type] = true;
         }
         public override void SetDefaults()
         {
@@ -25,8 +26,8 @@ namespace TrelamiumRemastered.Content.Items.Pyron
             Item.rare = 6;
             Item.width = 56;
             Item.height = 56;
-            Item.useAnimation = 12;
-            Item.useTime = 10;
+            Item.useAnimation = 20;
+            Item.useTime = 20;
             Item.useStyle = 5;
             Item.knockBack = 4.5f;
             Item.mana = 17;
@@ -35,7 +36,6 @@ namespace TrelamiumRemastered.Content.Items.Pyron
             Item.DamageType = DamageClass.Magic;
             Item.noMelee = true;
             Item.autoReuse = true;
-            Item.noUseGraphic = true;
             Item.value = Terraria.Item.buyPrice(0, 8, 75, 0);
             Item.UseSound = SoundID.Item73;
         }

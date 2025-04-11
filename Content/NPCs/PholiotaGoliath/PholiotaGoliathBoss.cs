@@ -15,7 +15,6 @@ namespace TrelamiumRemastered.Content.NPCs.PholiotaGoliath
     [AutoloadBossHead]
     public class PholiotaGoliathBoss : ModNPC
     {
-        int time = 0;
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Pholiota Goliath");

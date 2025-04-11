@@ -850,8 +850,14 @@ Items: {
 	}
 
 	BeltofAlgidity: {
-		Tooltip: ""
-		DisplayName: Beltof Algidity
+		Tooltip:
+			'''
+			Oh hey, it actually works now.
+			Allows the player to dash
+			Dashing into enemies will release a burst of glacial energy
+			Increases damage reduction by 20%
+			'''
+		DisplayName: Belt of Algidity
 	}
 
 	GlacialFloe: {
@@ -2176,6 +2182,7 @@ Projectiles: {
 	RadiantBoltProjectile.DisplayName: Radiant Bolt Projectile
 	MoonlightProjectile.DisplayName: Moonlight Projectile
 	OmegaExcaliburProjectile.DisplayName: Omega Excalibur Projectile
+	OmegaExcaliburPro.DisplayName: Omega Excalibur Pro
 	VenusVolcanArrowProjectile.DisplayName: Venus Volcan Arrow Projectile
 	ReaperScytheProjectile.DisplayName: Reaper Scythe Projectile
 	ReaperScytheHealProjectile.DisplayName: Reaper Scythe Heal Projectile
@@ -2186,6 +2193,10 @@ Projectiles: {
 	EndlessFlameProjectile.DisplayName: Endless Flame Projectile
 	OmegaNESplitProjectile.DisplayName: Omega N E Split Projectile
 	FungalMushroomBoss.DisplayName: Fungal Mushroom Boss
+	LyophylanceProjectileP.DisplayName: Lyophylance Projectile P
+	ParadoxCloneHiveProjectile.DisplayName: Paradox Clone Hive Projectile
+	ParadoxLaserProjectile.DisplayName: Paradox Laser Projectile
+	ParadoxMissileProjectile.DisplayName: Paradox Missile Projectile
 }
 
 Biomes: {

@@ -1,71 +1,75 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TrelamiumRemastered.Content.Projectiles.Dusts;
 
 namespace TrelamiumRemastered.Content.Projectiles
 {
     public class LyophylanceProjectile : ModProjectile
     {
-
-        protected virtual float HoldoutRangeMin => 74f;
-        protected virtual float HoldoutRangeMax => 151f;
+        public override void SetStaticDefaults()
+        {
+            // DisplayName.SetDefault("Lotus Overgrowth");
+        }
 
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileID.Spear);
+            Projectile.width = 32;
+            Projectile.height = 32;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
+            Projectile.tileCollide = false;
+            Projectile.alpha = 255;
+            Projectile.ignoreWater = true;
+            Projectile.DamageType = DamageClass.Magic;
         }
-        public override bool PreAI()
+
+        public override void AI()
         {
-            Player player = Main.player[Projectile.owner];
-            int duration = player.itemAnimationMax;
+            Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X) + 1.57f;
+            if (Projectile.ai[0] == 0f)
 
-            player.heldProj = Projectile.whoAmI;
-
-            if (player.itemAnimation < player.itemAnimationMax / 3)
             {
-                Projectile.ai[0] -= 1.1f;
-                if (Projectile.localAI[0] == 0f)
+                if (Main.myPlayer == Projectile.owner) //body only
                 {
-                    Projectile.localAI[0] = 1f;
-                    if (player.itemAnimation < player.itemAnimationMax / 2) Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X + Projectile.velocity.X, Projectile.Center.Y + Projectile.velocity.Y, Projectile.velocity.X * 7.0f, Projectile.velocity.Y * 8.0f, ModContent.ProjectileType<FungalMushroomProjectile>(), Projectile.damage, Projectile.knockBack * 0.85f, Projectile.owner, 0f, 0f);
+                    int num52 = Projectile.type;
+                    num52 = 151;
+                    if (Projectile.ai[1] >= 10f)
+                    {
+                        num52 = 152;
+                    }
+                    int num53 = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position.X + Projectile.velocity.X + (float)(Projectile.width / 2), Projectile.position.Y + Projectile.velocity.Y + (float)(Projectile.height / 2), Projectile.velocity.X, Projectile.velocity.Y, num52, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
+                    Main.projectile[num53].damage = Projectile.damage;
+                    Main.projectile[num53].ai[1] = Projectile.ai[1] + 1f;
+                    NetMessage.SendData(27, -1, -1, null, num53, 0f, 0f, 0f, 0, 0, 0);
+                    return;
                 }
             }
 
-            if (Projectile.timeLeft > duration)
-            {
-                Projectile.timeLeft = duration;
-            }
-
-            Projectile.velocity = Vector2.Normalize(Projectile.velocity);
-
-            float halfDuration = duration * 0.5f;
-            float progress;
-
-            if (Projectile.timeLeft < halfDuration)
-            {
-                progress = Projectile.timeLeft / halfDuration;
-            }
             else
             {
-                progress = (duration - Projectile.timeLeft) / halfDuration;
+                if (Projectile.alpha < 170 && Projectile.alpha + 5 >= 170)
+                {
+                    int num3;
+                    for (int num54 = 0; num54 < 8; num54 = num3 + 1)
+                    {
+                        int num55 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 7, Projectile.velocity.X * 0.025f, Projectile.velocity.Y * 0.025f, 200, default(Color), 1.3f);
+                        Main.dust[num55].noGravity = true;
+                        Dust dust3 = Main.dust[num55];
+                        dust3.velocity *= 0.5f;
+                        num3 = num54;
+                    }
+                }
+                Projectile.alpha += 3;
+                if (Projectile.alpha >= 255)
+                {
+                    Projectile.Kill();
+                    return;
+                }
             }
-
-            Projectile.Center = player.MountedCenter + Vector2.SmoothStep(Projectile.velocity * HoldoutRangeMin, Projectile.velocity * HoldoutRangeMax, progress);
-
-            if (Projectile.spriteDirection == -1)
-            {
-                Projectile.rotation += MathHelper.ToRadians(45f);
-            }
-            else
-            {
-                Projectile.rotation += MathHelper.ToRadians(135f);
-            }
-            return false;
         }
     }
 }

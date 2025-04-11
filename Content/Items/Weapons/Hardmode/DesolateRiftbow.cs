@@ -45,7 +45,7 @@ namespace TrelamiumRemastered.Content.Items.Weapons.Hardmode
             {
                 Projectile.NewProjectile(source, playerPosition, abovePlayer, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
             }
-            return false;
+            return true;
         }
         public override void AddRecipes()
         {

@@ -11,6 +11,7 @@ using TrelamiumRemastered.Content.Projectiles.Boss.Azolinth;
 using TrelamiumRemastered.Content.Items.Azolinth;
 using TrelamiumRemastered.Content.Items;
 using TrelamiumRemastered;
+using Terraria.GameContent;
 
 namespace TrelamiumRemastered.Content.NPCs.Azolinth
 {
@@ -68,10 +69,17 @@ namespace TrelamiumRemastered.Content.NPCs.Azolinth
         }
         public override void AI()
         {
+            Player player = Main.player[NPC.target];
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (player.active && !player.dead)
+                {
+                    player.GetModPlayer<TrelamiumModPlayer>().azolinthActive = true;
+                }
+            }
             //bool flagNull = false;
             NPC.localAI[2] += 1f;
-            #region Basic Code
-            Player player = Main.player[NPC.target];           
+            #region Basic Code         
             Lighting.AddLight(NPC.Center, 0f, 0.15f, 0.25f);
             NPC.alpha -= 5;
             if (NPC.alpha < 0)
@@ -489,47 +497,6 @@ namespace TrelamiumRemastered.Content.NPCs.Azolinth
                     NetMessage.SendData(MessageID.WorldData);
             }
         }
-        //public override void NPCLoot()
-        //{
-        //    if (Main.rand.Next(10) == 0)
-        //    {
-        //        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("PyronMaskMask"));
-        //    }
-        //    if (Main.rand.Next(7) == 0)
-        //    {
-        //        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("PyronTrophy"));
-        //    }
-        //    if (Main.expertMode)
-        //    {
-        //        npc.DropBossBags();
-        //    }
-        //    else
-        //    {
-        //        if (Main.rand.Next(4) == 0)
-        //        {
-        //            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoliusArk"));
-        //        }
-        //        if (Main.rand.Next(4) == 0)
-        //        {
-        //            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Prevalence"));
-        //        }
-        //        if (Main.rand.Next(4) == 0)
-        //        {
-        //            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("HadesTrident"));
-        //        }
-        //        if (Main.rand.Next(4) == 0)
-        //        {
-        //            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CombustionRifle"));
-        //        }
-        //    }
-        //    if (!TrelamiumModWorld.downedAzolinth)
-        //    {
-        //        Main.NewText("Solar matter creatures are emerging from the distance...", 230, 150, 0, false);
-        //        Main.NewText("The hallow runs rampant in terror...", 255, 175, 98, false);
-        //        TrelamiumModWorld.downedAzolinth = true;
-        //        if (Main.netMode == NetmodeID.Server)
-        //            NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
-        //    }
-        //}
+        
     }
 }
