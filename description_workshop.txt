@@ -1,6 +1,5 @@
-Version for friends.
-To help find errors.
-Special Thanks:
+Port Trelamium Remastered
+original by the author
 @ShockedHorizon5 - Spriter, Legacy Dev
 @derpin'lolz - Spriter, Community Manager, Legacy Dev
 @blushiemagic & tModLoader Devs - Creating tModLoader :D
@@ -11,3 +10,9 @@ tModLoader #Help channel - Helped with a lot of bugs for custom AI.
 Relogic Employees & Terraria Devs - Making terraria, obviously :D
 Tsuki'sStuffs - Willing to produce music for Trelamium Mod Remastered
 @ImActuallyTurquoise - Euphoria Mod Soundtracks, which were ported to Trelamium Mod Remastered.
+^^^ Thanks to all of those people, this would have most likely not been a thing without them.
+Forum link
+https://forums.terraria.org/index.php?threads/trelamium-mod-remastered.71076/
+
+My source code
+https://github.com/Sernk/Trelamium-Remastered
